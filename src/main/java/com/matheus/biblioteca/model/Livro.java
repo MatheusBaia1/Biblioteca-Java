@@ -14,7 +14,12 @@ public class Livro {
     }
     @Override
     public String toString() {
-        return ("Livro: " + titulo + "-" + autor + "-" + isbn + "-" + disponivel );
+        return ("==========================" + "\n" +
+                "Livro: " + titulo + "\n" +
+                "Autor:" + autor + "\n" +
+                "isbn: " + isbn + "\n" +
+                "Status: " + disponivel + "\n" +
+                "--------------------------");
     }
     public String getTitulo() {
         return titulo;

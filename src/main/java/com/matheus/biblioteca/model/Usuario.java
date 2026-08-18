@@ -10,7 +10,10 @@ public class Usuario {
     }
     @Override
     public String toString() {
-        return "Usuario{" + "nome=" + nome + ", email=" + email + '}';
+        return "==========================" + "\n" +
+                "nome: " + nome + "\n" +
+                "email: " + email + "\n" +
+                "--------------------------";
     }
     public String getNome() {
         return nome;

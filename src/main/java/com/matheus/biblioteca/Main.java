@@ -13,5 +13,6 @@ public class Main {
         repositorioUsuarios.salvar(new Usuario("Matheus baia", "Matheusbasia@Gmail.com"));
 
         repositorioLivros.listarTodos().forEach(System.out::println);
+        repositorioUsuarios.listarTodos().forEach(System.out::println);
     }
 }
