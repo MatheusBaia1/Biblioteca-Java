@@ -8,6 +8,14 @@ public class Emprestimo {
     private LocalDate dataDevolucaoPrevista;
     private LocalDate dataDevolucaoReal;
 
+    @Override
+    public String toString() {
+        return "==========================" + "\n" +
+                "Emprestimo do livro: " + livro + "\n"+
+                "usuario: " + usuario + "\n" +
+                "--------------------------";
+    }
+
     public Emprestimo(Livro livro, Usuario usuario) {
         this.livro = livro;
         this.usuario = usuario;
