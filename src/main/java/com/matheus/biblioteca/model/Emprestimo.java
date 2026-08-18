@@ -6,6 +6,7 @@ public class Emprestimo {
     private Usuario usuario;
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucaoPrevista;
+    private LocalDate dataDevolucaoReal;
 
     public Emprestimo(Livro livro, Usuario usuario) {
         this.livro = livro;
@@ -24,5 +25,11 @@ public class Emprestimo {
     }
     public LocalDate getDataDevolucaoPrevista() {
         return dataDevolucaoPrevista;
+    }
+    public LocalDate getDataDevolucaoReal() {
+        return dataDevolucaoReal;
+    }
+    public void setDataDevolucaoReal(LocalDate dataDevolucaoReal) {
+        this.dataDevolucaoReal = dataDevolucaoReal;
     }
 }
