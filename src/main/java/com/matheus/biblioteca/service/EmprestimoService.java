@@ -4,6 +4,7 @@ import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.Repositorio;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +43,16 @@ public class EmprestimoService {
         Emprestimo emprestimo = new Emprestimo(livro, usuario);
         livro.setDisponivel(false);
         emprestimoRepositorio.salvar(emprestimo);
+    }
+    public void devolver (String isbn) {
+        Optional<Emprestimo> emprestimoEncontrado = emprestimoRepositorio.listarTodos().stream()
+                .filter(emprestimo -> emprestimo.getLivro().getIsbn().equals(isbn) && emprestimo.getDataDevolucaoReal() == null)
+                .findFirst();
+        if (!emprestimoEncontrado.isPresent()) {
+            throw new RuntimeException("Nenhum emprestimo ativo encontrado para esse livro");
+        }
+        Emprestimo emprestimo = emprestimoEncontrado.get();
+        emprestimo.setDataDevolucaoReal(LocalDate.now());
+        emprestimo.getLivro().setDisponivel(true);
     }
 }
