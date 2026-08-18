@@ -20,4 +20,7 @@ public class EmprestimoService {
         this.usuarioRepositorio = usuarioRepositorio;
         this.emprestimoRepositorio = emprestimoRepositorio;
     }
+    public void emprestar (Integer isbn, String email) {
+
+    }
 }

@@ -8,8 +8,8 @@ public class Main {
         Repositorio<Livro> repositorioLivros = new Repositorio<>();
         Repositorio<Usuario> repositorioUsuarios = new Repositorio<>();
 
-        repositorioLivros.salvar(new Livro("harry potter e a pedra filosofal", "J. K. Rowling", 001));
-        repositorioLivros.salvar(new Livro("O poder do subconsciente", "Joseph Murphy", 002));
+        repositorioLivros.salvar(new Livro("harry potter e a pedra filosofal", "J. K. Rowling", "010121416"));
+        repositorioLivros.salvar(new Livro("O poder do subconsciente", "Joseph Murphy", "021121314"));
         repositorioUsuarios.salvar(new Usuario("Matheus baia", "Matheusbasia@Gmail.com"));
 
         repositorioLivros.listarTodos().forEach(System.out::println);
