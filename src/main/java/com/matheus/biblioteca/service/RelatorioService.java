@@ -4,6 +4,9 @@ import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.Repositorio;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class RelatorioService {
     private Repositorio<Livro> livroRepositorio;
     private Repositorio<Usuario> usuarioRepositorio;
@@ -15,5 +18,10 @@ public class RelatorioService {
         this.livroRepositorio = livroRepositorio;
         this.usuarioRepositorio = usuarioRepositorio;
         this.emprestimoRepositorio = emprestimoRepositorio;
+    }
+    public List<Livro> listarDisponiveis() {
+        return livroRepositorio.listarTodos().stream()
+                .filter(livro -> livro.isDisponivel())
+                .collect(Collectors.toList());
     }
 }
