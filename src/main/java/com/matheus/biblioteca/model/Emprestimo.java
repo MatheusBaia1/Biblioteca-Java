@@ -10,9 +10,12 @@ public class Emprestimo {
 
     @Override
     public String toString() {
+        String status = dataDevolucaoReal == null ? "Ativo" : "Devolvido em " + dataDevolucaoReal;
         return "==========================" + "\n" +
-                "Emprestimo do livro: " + livro + "\n"+
-                "usuario: " + usuario + "\n" +
+                "Emprestimo do livro: " + livro.getTitulo() + "\n" +
+                "usuario: " + usuario.getNome() + " (" + livro.getAutor() + ")" + "\n" +
+                "Data do emprestimo: " + dataEmprestimo + "\n" +
+                "Status: " + status + "\n" +
                 "--------------------------";
     }
 
