@@ -4,6 +4,7 @@ import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.Repositorio;
 import com.matheus.biblioteca.service.EmprestimoService;
+import com.matheus.biblioteca.service.RelatorioService;
 
 public class Main {
     public static void main(String[] args){
@@ -12,6 +13,7 @@ public class Main {
         Repositorio<Emprestimo> emprestimoRepositorio = new Repositorio<>();
 
         EmprestimoService service = new EmprestimoService(livroRepositorio, usuarioRepositorio, emprestimoRepositorio);
+        RelatorioService relatorioService = new RelatorioService(livroRepositorio, usuarioRepositorio, emprestimoRepositorio);
 
         livroRepositorio.salvar(new Livro("harry potter e a pedra filosofal", "J. K. Rowling", "001"));
         livroRepositorio.salvar(new Livro("O poder do subconsciente", "Joseph Murphy", "002"));
@@ -31,5 +33,25 @@ public class Main {
         livroRepositorio.listarTodos().forEach(System.out::println);
         emprestimoRepositorio.listarTodos().forEach(System.out::println);
 
+        service.emprestar("001", "Matheusbaia@gmail.com");
+        service.devolver("001");
+
+        service.emprestar("001", "Matheusbaia@gmail.com");
+        service.devolver("001");
+
+        service.emprestar("002", "Matheusbaia@gmail.com");
+// deixa esse sem devolver, pra testar o relatório de "não devolvidos"
+
+        System.out.println("Livros disponíveis:");
+        relatorioService.listarDisponiveis().forEach(System.out::println);
+
+        System.out.println("Histórico do usuário:");
+        relatorioService.historicoDoUsuario("Matheusbaia@gmail.com").forEach(System.out::println);
+
+        System.out.println("Empréstimos não devolvidos:");
+        relatorioService.emprestimoNaoDevolvido().forEach(System.out::println);
+
+        System.out.println("Livro mais emprestado:");
+        System.out.println(relatorioService.livroMaisEmprestado());
     }
 }

@@ -4,7 +4,7 @@ import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.Repositorio;
 
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,5 +39,13 @@ public class RelatorioService {
     public Map<Livro, Long> contarEmprestimosPorLivro () {
         return emprestimoRepositorio.listarTodos().stream()
                 .collect(Collectors.groupingBy(emprestimo -> emprestimo.getLivro(), Collectors.counting()));
+    }
+    public Livro livroMaisEmprestado() {
+        Map<Livro, Long> contagem = contarEmprestimosPorLivro();
+
+        return contagem.entrySet().stream()
+                .max(Comparator.comparing(Map.Entry::getValue))
+                .map(Map.Entry::getKey)
+                .orElse(null);
     }
 }

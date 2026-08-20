@@ -13,7 +13,7 @@ public class Emprestimo {
         String status = dataDevolucaoReal == null ? "Ativo" : "Devolvido em " + dataDevolucaoReal;
         return "==========================" + "\n" +
                 "Emprestimo do livro: " + livro.getTitulo() + "\n" +
-                "usuario: " + usuario.getNome() + " (" + livro.getAutor() + ")" + "\n" +
+                "usuario: " + usuario.getNome() + " (" + usuario.getEmail() + ")" + "\n" +
                 "Data do emprestimo: " + dataEmprestimo + "\n" +
                 "Status: " + status + "\n" +
                 "--------------------------";
