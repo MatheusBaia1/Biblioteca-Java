@@ -29,4 +29,9 @@ public class RelatorioService {
                 .filter(emprestimo -> emprestimo.getUsuario().getEmail().equals(email))
                 .collect(Collectors.toList());
     }
+    public List<Emprestimo> emprestimoNaoDevolvido() {
+        return emprestimoRepositorio.listarTodos().stream()
+                .filter(emprestimo -> emprestimo.getDataDevolucaoReal() == null)
+                .collect(Collectors.toList());
+    }
 }
