@@ -24,4 +24,9 @@ public class RelatorioService {
                 .filter(livro -> livro.isDisponivel())
                 .collect(Collectors.toList());
     }
+    public List<Emprestimo> historicoDoUsuario(String email) {
+        return emprestimoRepositorio.listarTodos().stream()
+                .filter(emprestimo -> emprestimo.getUsuario().getEmail().equals(email))
+                .collect(Collectors.toList());
+    }
 }
