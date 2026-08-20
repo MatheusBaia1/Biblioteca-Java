@@ -4,7 +4,9 @@ import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.Repositorio;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RelatorioService {
@@ -33,5 +35,9 @@ public class RelatorioService {
         return emprestimoRepositorio.listarTodos().stream()
                 .filter(emprestimo -> emprestimo.getDataDevolucaoReal() == null)
                 .collect(Collectors.toList());
+    }
+    public Map<Livro, Long> contarEmprestimosPorLivro () {
+        return emprestimoRepositorio.listarTodos().stream()
+                .collect(Collectors.groupingBy(emprestimo -> emprestimo.getLivro(), Collectors.counting()));
     }
 }
