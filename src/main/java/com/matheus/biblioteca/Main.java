@@ -5,6 +5,10 @@ import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.Repositorio;
 import com.matheus.biblioteca.service.EmprestimoService;
 import com.matheus.biblioteca.service.RelatorioService;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.io.IOException;
+import com.matheus.biblioteca.repository.ConnectionFactory;
 
 public class Main {
     public static void main(String[] args){
@@ -54,5 +58,12 @@ public class Main {
         System.out.println("Livro mais emprestado:");
         System.out.println(relatorioService.livroMaisEmprestado());*/
 
+        try {
+            Connection conexao = ConnectionFactory.getConexao();
+            System.out.println("Conectado com sucesso via ConnectionFactory!");
+            conexao.close();
+        } catch (SQLException | IOException e) {
+            System.out.println("Erro ao conectar: " + e.getMessage());
+        }
     }
 }
