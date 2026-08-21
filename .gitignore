@@ -14,6 +14,7 @@ vcs.xml
 compiler.xml
 jarRepositories.xml
 modules.xml
+database.properties
 
 ### Eclipse ###
 .apt_generated

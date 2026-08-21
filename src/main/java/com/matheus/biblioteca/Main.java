@@ -8,7 +8,7 @@ import com.matheus.biblioteca.service.RelatorioService;
 
 public class Main {
     public static void main(String[] args){
-        Repositorio<Livro> livroRepositorio = new Repositorio<>();
+        /*Repositorio<Livro> livroRepositorio = new Repositorio<>();
         Repositorio<Usuario> usuarioRepositorio = new Repositorio<>();
         Repositorio<Emprestimo> emprestimoRepositorio = new Repositorio<>();
 
@@ -52,6 +52,7 @@ public class Main {
         relatorioService.emprestimoNaoDevolvido().forEach(System.out::println);
 
         System.out.println("Livro mais emprestado:");
-        System.out.println(relatorioService.livroMaisEmprestado());
+        System.out.println(relatorioService.livroMaisEmprestado());*/
+
     }
 }
