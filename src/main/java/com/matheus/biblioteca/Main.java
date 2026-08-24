@@ -2,6 +2,7 @@ package com.matheus.biblioteca;
 import com.matheus.biblioteca.model.Emprestimo;
 import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
+import com.matheus.biblioteca.repository.LivroRepository;
 import com.matheus.biblioteca.repository.Repositorio;
 import com.matheus.biblioteca.service.EmprestimoService;
 import com.matheus.biblioteca.service.RelatorioService;
@@ -56,7 +57,7 @@ public class Main {
         relatorioService.emprestimoNaoDevolvido().forEach(System.out::println);
 
         System.out.println("Livro mais emprestado:");
-        System.out.println(relatorioService.livroMaisEmprestado());*/
+        System.out.println(relatorioService.livroMaisEmprestado());
 
         try {
             Connection conexao = ConnectionFactory.getConexao();
@@ -64,6 +65,13 @@ public class Main {
             conexao.close();
         } catch (SQLException | IOException e) {
             System.out.println("Erro ao conectar: " + e.getMessage());
+        }*/
+        try {
+            LivroRepository livroRepository = new LivroRepository();
+            livroRepository.salvar(new Livro("O Hobbit", "J.R.R. Tolkien", "333"));
+            System.out.println("Livro salvo no banco com sucesso!");
+        } catch (SQLException | IOException e) {
+            System.out.println("Erro ao salvar: " + e.getMessage());
         }
     }
 }
