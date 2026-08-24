@@ -68,8 +68,10 @@ public class Main {
         }*/
         try {
             LivroRepository livroRepository = new LivroRepository();
-            livroRepository.salvar(new Livro("O Hobbit", "J.R.R. Tolkien", "333"));
-            System.out.println("Livro salvo no banco com sucesso!");
+            //livroRepository.salvar(new Livro("O Hobbit", "J.R.R. Tolkien", "333"));
+            //System.out.println("Livro salvo no banco com sucesso!");
+
+            livroRepository.listarTodos().forEach(System.out::println);
         } catch (SQLException | IOException e) {
             System.out.println("Erro ao salvar: " + e.getMessage());
         }
