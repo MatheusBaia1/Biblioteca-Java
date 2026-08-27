@@ -1,6 +1,7 @@
 package com.matheus.biblioteca.model;
 
 public class Usuario {
+    private Integer id;
     private String nome;
     private String email;
 
@@ -14,6 +15,12 @@ public class Usuario {
                 "nome: " + nome + "\n" +
                 "email: " + email + "\n" +
                 "--------------------------";
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
     public String getNome() {
         return nome;
