@@ -4,6 +4,7 @@ import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.LivroRepository;
 import com.matheus.biblioteca.repository.Repositorio;
+import com.matheus.biblioteca.repository.UsuarioRepository;
 import com.matheus.biblioteca.service.EmprestimoService;
 import com.matheus.biblioteca.service.RelatorioService;
 import java.sql.Connection;
@@ -74,6 +75,13 @@ public class Main {
             livroRepository.listarTodos().forEach(System.out::println);
         } catch (SQLException | IOException e) {
             System.out.println("Erro ao salvar: " + e.getMessage());
+        }
+        try {
+            UsuarioRepository usuarioRepository = new UsuarioRepository();
+            usuarioRepository.salvar(new Usuario("Ana Silva", "ana@email.com"));
+            usuarioRepository.listarTodos().forEach(System.out::println);
+        } catch (SQLException | IOException e) {
+            System.out.println("Erro: " + e.getMessage());
         }
     }
 }
