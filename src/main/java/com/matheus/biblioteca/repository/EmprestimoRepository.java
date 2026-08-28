@@ -74,4 +74,13 @@ public class EmprestimoRepository {
         conexao.close();
         return emprestimos;
     }
+    public void remover(Integer id) throws SQLException, IOException {
+        Connection conexao = ConnectionFactory.getConexao();
+        String sql = "DELETE FROM emprestimos WHERE id = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+        stmt.close();
+        conexao.close();
+    }
 }
