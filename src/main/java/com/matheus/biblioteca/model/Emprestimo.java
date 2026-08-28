@@ -2,6 +2,7 @@ package com.matheus.biblioteca.model;
 import java.time.LocalDate;
 
 public class Emprestimo {
+    private Integer id;
     private Livro livro;
     private Usuario usuario;
     private LocalDate dataEmprestimo;
@@ -24,6 +25,19 @@ public class Emprestimo {
         this.usuario = usuario;
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucaoPrevista = LocalDate.now().plusDays(30);
+    }
+    public Emprestimo(Livro livro, Usuario usuario, LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista, LocalDate dataDevolucaoReal) {
+        this.livro = livro;
+        this.usuario = usuario;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucaoPrevista = dataDevolucaoPrevista;
+        this.dataDevolucaoReal = dataDevolucaoReal;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
     public Livro getLivro() {
         return livro;
