@@ -74,6 +74,16 @@ public class EmprestimoRepository {
         conexao.close();
         return emprestimos;
     }
+    public void atualizar (Emprestimo emprestimo) throws SQLException, IOException {
+        Connection conexao = ConnectionFactory.getConexao();
+        String sql = "UPDATE emprestimos SET disponivel = ? WHERE id = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setBoolean(1, emprestimo.getLivro().isDisponivel());
+        stmt.setInt(2, emprestimo.getId());
+        stmt.executeUpdate();
+        stmt.close();
+        conexao.close();
+    }
     public void remover(Integer id) throws SQLException, IOException {
         Connection conexao = ConnectionFactory.getConexao();
         String sql = "DELETE FROM emprestimos WHERE id = ?";

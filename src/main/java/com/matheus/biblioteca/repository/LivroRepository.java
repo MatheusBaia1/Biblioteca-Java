@@ -38,6 +38,14 @@ public class LivroRepository {
         conexao.close();
         return livros;
     }
+    public void atualizar (Livro livro) throws SQLException, IOException {
+        Connection conexao = ConnectionFactory.getConexao();
+        String sql = "UPDATE livros SET disponivel = ? WHERE id = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setBoolean(1, livro.isDisponivel());
+        stmt.executeUpdate();
+        conexao.close();
+    }
     public void remover(Integer id) throws SQLException, IOException {
         Connection conexao = ConnectionFactory.getConexao();
         String sql = "DELETE FROM livros WHERE id = ?";

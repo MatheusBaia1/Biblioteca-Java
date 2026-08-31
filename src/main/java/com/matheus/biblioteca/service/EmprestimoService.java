@@ -2,27 +2,32 @@ package com.matheus.biblioteca.service;
 import com.matheus.biblioteca.model.Emprestimo;
 import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
+import com.matheus.biblioteca.repository.EmprestimoRepository;
+import com.matheus.biblioteca.repository.LivroRepository;
 import com.matheus.biblioteca.repository.Repositorio;
+import com.matheus.biblioteca.repository.UsuarioRepository;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 public class EmprestimoService {
 
-    private Repositorio<Livro> livroRepositorio;
-    private Repositorio<Usuario> usuarioRepositorio;
-    private Repositorio<Emprestimo> emprestimoRepositorio;
+    private LivroRepository livroRepositorio;
+    private UsuarioRepository usuarioRepositorio;
+    private EmprestimoRepository emprestimoRepositorio;
 
-    public EmprestimoService(Repositorio<Livro> livroRepositorio,
-                             Repositorio<Usuario> usuarioRepositorio,
-                             Repositorio<Emprestimo> emprestimoRepositorio) {
+    public EmprestimoService(LivroRepository livroRepositorio,
+                             UsuarioRepository usuarioRepositorio,
+                             EmprestimoRepository emprestimoRepositorio) {
 
         this.livroRepositorio = livroRepositorio;
         this.usuarioRepositorio = usuarioRepositorio;
         this.emprestimoRepositorio = emprestimoRepositorio;
     }
-    public void emprestar (String isbn, String email) {
+    public void emprestar (String isbn, String email) throws SQLException, IOException {
         Optional<Livro> livroEncontrado = livroRepositorio.listarTodos().stream()
                 .filter(livro -> livro.getIsbn().equals(isbn))
                 .findFirst();
@@ -44,7 +49,7 @@ public class EmprestimoService {
         livro.setDisponivel(false);
         emprestimoRepositorio.salvar(emprestimo);
     }
-    public void devolver (String isbn) {
+    public void devolver (String isbn) throws SQLException, IOException{
         Optional<Emprestimo> emprestimoEncontrado = emprestimoRepositorio.listarTodos().stream()
                 .filter(emprestimo -> emprestimo.getLivro().getIsbn().equals(isbn) && emprestimo.getDataDevolucaoReal() == null)
                 .findFirst();
