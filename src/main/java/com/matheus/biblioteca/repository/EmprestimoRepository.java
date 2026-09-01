@@ -76,9 +76,14 @@ public class EmprestimoRepository {
     }
     public void atualizar (Emprestimo emprestimo) throws SQLException, IOException {
         Connection conexao = ConnectionFactory.getConexao();
-        String sql = "UPDATE emprestimos SET disponivel = ? WHERE id = ?";
+        String sql = "UPDATE emprestimos SET data_devolucao_real = ? WHERE id = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setBoolean(1, emprestimo.getLivro().isDisponivel());
+
+        if (emprestimo.getDataDevolucaoPrevista() != null) {
+            stmt.setDate(1, java.sql.Date.valueOf(emprestimo.getDataDevolucaoReal()));
+        } else {
+            stmt.setNull(1, java.sql.Types.DATE);
+        }
         stmt.setInt(2, emprestimo.getId());
         stmt.executeUpdate();
         stmt.close();

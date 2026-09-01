@@ -48,6 +48,7 @@ public class EmprestimoService {
         Emprestimo emprestimo = new Emprestimo(livro, usuario);
         livro.setDisponivel(false);
         emprestimoRepositorio.salvar(emprestimo);
+        livroRepositorio.atualizar(livro);
     }
     public void devolver (String isbn) throws SQLException, IOException{
         Optional<Emprestimo> emprestimoEncontrado = emprestimoRepositorio.listarTodos().stream()
@@ -59,5 +60,7 @@ public class EmprestimoService {
         Emprestimo emprestimo = emprestimoEncontrado.get();
         emprestimo.setDataDevolucaoReal(LocalDate.now());
         emprestimo.getLivro().setDisponivel(true);
+        emprestimoRepositorio.atualizar(emprestimo);
+        livroRepositorio.atualizar(emprestimo.getLivro());
     }
 }

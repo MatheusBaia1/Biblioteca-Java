@@ -43,6 +43,7 @@ public class LivroRepository {
         String sql = "UPDATE livros SET disponivel = ? WHERE id = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setBoolean(1, livro.isDisponivel());
+        stmt.setInt(2, livro.getId());
         stmt.executeUpdate();
         conexao.close();
     }
