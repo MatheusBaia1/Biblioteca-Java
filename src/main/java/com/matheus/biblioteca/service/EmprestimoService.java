@@ -4,7 +4,6 @@ import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.EmprestimoRepository;
 import com.matheus.biblioteca.repository.LivroRepository;
-import com.matheus.biblioteca.repository.Repositorio;
 import com.matheus.biblioteca.repository.UsuarioRepository;
 
 import java.io.IOException;

@@ -1,32 +1,55 @@
 package com.matheus.biblioteca;
 
-import com.matheus.biblioteca.repository.*;
-import com.matheus.biblioteca.service.EmprestimoService;
-
-import java.sql.SQLException;
-import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            LivroRepository livroRepository = new LivroRepository();
-            UsuarioRepository usuarioRepository = new UsuarioRepository();
-            EmprestimoRepository emprestimoRepository = new EmprestimoRepository(livroRepository, usuarioRepository);
-
-            EmprestimoService service = new EmprestimoService(livroRepository, usuarioRepository, emprestimoRepository);
-
-            service.emprestar("333", "ana@email.com");
-            System.out.println("Emprestado com sucesso!");
-
-            livroRepository.listarTodos().forEach(System.out::println);
-
-            service.devolver("333");
-            System.out.println("Devolvido com sucesso!");
-
-            livroRepository.listarTodos().forEach(System.out::println);
-            emprestimoRepository.listarTodos().forEach(System.out::println);
-        } catch (SQLException | IOException e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
+        Scanner scanner = new Scanner(System.in);
+        int opcao;
+        do {
+            System.out.println("=======MENU=======");
+            System.out.println("1 - Cadastrar livro");
+            System.out.println("2 - Cadastrar usuario");
+            System.out.println("3 - Emprestar livro");
+            System.out.println("4 - Devolver livro");
+            System.out.println("5 - Listar livros disponíveis");
+            System.out.println("6 - Ver histórico de um usuário");
+            System.out.println("7 - Ver empréstimos não devolvidos");
+            System.out.println("8 - Ver livro mais emprestado");
+            System.out.println("0 - Sair");
+            System.out.println("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            switch (opcao) {
+                case 1:
+                    System.out.println("Você escolheu cadastrar livro");
+                    break;
+                case 2:
+                    System.out.println("Você escolheu cadastrar usuário");
+                    break;
+                case 3:
+                    System.out.println("Emprestar livro");
+                    break;
+                case 4:
+                    System.out.println("Devolver livro");
+                    break;
+                case 5:
+                    System.out.println("Listar livros disponiveis");
+                    break;
+                case 6:
+                    System.out.println("Ver histórico de um usuário");
+                    break;
+                case 7:
+                    System.out.println("Ver empréstimos não devolvidos");
+                    break;
+                case 8:
+                    System.out.println("Ver livro mais emprestado");
+                    break;
+                case 0:
+                    System.out.println("Sair");
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+            }
+        } while (opcao != 0);
     }
 }
