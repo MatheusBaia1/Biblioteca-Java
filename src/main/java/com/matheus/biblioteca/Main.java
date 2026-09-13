@@ -100,7 +100,7 @@ public class Main {
                     relatorioService.emprestimoNaoDevolvido().forEach(System.out::println);
                     break;
                 case 8:
-                    System.out.println("Ver livro mais emprestado");
+                    System.out.println("Livro mais emprestado:" + relatorioService.livroMaisEmprestado());
                     break;
                 case 0:
                     System.out.println("Sair");
