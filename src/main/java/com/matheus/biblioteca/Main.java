@@ -1,6 +1,7 @@
 package com.matheus.biblioteca;
 
 import com.matheus.biblioteca.model.Livro;
+import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.EmprestimoRepository;
 import com.matheus.biblioteca.repository.LivroRepository;
 import com.matheus.biblioteca.repository.UsuarioRepository;
@@ -50,7 +51,14 @@ public class Main {
                     System.out.println("Livro cadastrado com sucesso!");
                     break;
                 case 2:
-                    System.out.println("Você escolheu cadastrar usuário");
+                    System.out.println("Digite o nome do usuario:");
+                    String nome = scanner.nextLine();
+
+                    System.out.println("Digite o email do usuario:");
+                    String email = scanner.nextLine();
+
+                    usuarioRepository.salvar(new Usuario(nome, email));
+                    System.out.println("Usuario cadastrado com sucesso!");
                     break;
                 case 3:
                     System.out.println("Emprestar livro");
