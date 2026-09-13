@@ -96,7 +96,8 @@ public class Main {
                     relatorioService.historicoDoUsuario(emailDigitado).forEach(System.out::println);
                     break;
                 case 7:
-                    System.out.println("Ver empréstimos não devolvidos");
+                    System.out.println("Emprestimos não devolvidos:");
+                    relatorioService.emprestimoNaoDevolvido().forEach(System.out::println);
                     break;
                 case 8:
                     System.out.println("Ver livro mais emprestado");
