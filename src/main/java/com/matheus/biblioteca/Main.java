@@ -86,7 +86,8 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.println("Listar livros disponiveis");
+                    System.out.println("Livros Disponiveis:");
+                    relatorioService.listarDisponiveis().forEach(System.out::println);
                     break;
                 case 6:
                     System.out.println("Ver histórico de um usuário");
