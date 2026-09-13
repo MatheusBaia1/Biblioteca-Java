@@ -25,7 +25,7 @@ public class Main {
         do {
             System.out.println("=======MENU=======");
             System.out.println("1 - Cadastrar livro");
-            System.out.println("2 - Cadastrar usuario");
+            System.out.println("2 - Cadastrar usuário");
             System.out.println("3 - Emprestar livro");
             System.out.println("4 - Devolver livro");
             System.out.println("5 - Listar livros disponíveis");
@@ -51,17 +51,28 @@ public class Main {
                     System.out.println("Livro cadastrado com sucesso!");
                     break;
                 case 2:
-                    System.out.println("Digite o nome do usuario:");
+                    System.out.println("Digite o nome do usuário:");
                     String nome = scanner.nextLine();
 
-                    System.out.println("Digite o email do usuario:");
+                    System.out.println("Digite o email do usuário:");
                     String email = scanner.nextLine();
 
                     usuarioRepository.salvar(new Usuario(nome, email));
                     System.out.println("Usuario cadastrado com sucesso!");
                     break;
                 case 3:
-                    System.out.println("Emprestar livro");
+                    System.out.println("Digite o ISBN do livro:");
+                    String isbnEmprestimo = scanner.nextLine();
+
+                    System.out.println("Digite o email do usuário:");
+                    String emailEmprestimo = scanner.nextLine();
+
+                    try {
+                        service.emprestar(isbnEmprestimo, emailEmprestimo);
+                        System.out.println("Emprestimo cadastrado com sucesso!");
+                    } catch (RuntimeException e) {
+                        System.out.println("Erro " + e.getMessage());
+                    }
                     break;
                 case 4:
                     System.out.println("Devolver livro");
