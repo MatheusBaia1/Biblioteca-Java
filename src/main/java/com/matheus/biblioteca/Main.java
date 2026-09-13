@@ -103,7 +103,7 @@ public class Main {
                     System.out.println("Livro mais emprestado:" + relatorioService.livroMaisEmprestado());
                     break;
                 case 0:
-                    System.out.println("Sair");
+                    System.out.println("Encerrando o sistema. Até logo!");
                     break;
                 default:
                     System.out.println("Opção inválida");
