@@ -1,10 +1,25 @@
 package com.matheus.biblioteca;
 
+import com.matheus.biblioteca.model.Livro;
+import com.matheus.biblioteca.repository.EmprestimoRepository;
+import com.matheus.biblioteca.repository.LivroRepository;
+import com.matheus.biblioteca.repository.UsuarioRepository;
+import com.matheus.biblioteca.service.EmprestimoService;
+import com.matheus.biblioteca.service.RelatorioService;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, IOException {
         Scanner scanner = new Scanner(System.in);
+        LivroRepository livroRepository = new LivroRepository();
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        EmprestimoRepository emprestimoRepository = new EmprestimoRepository(livroRepository, usuarioRepository);
+        EmprestimoService service = new EmprestimoService(livroRepository, usuarioRepository,emprestimoRepository);
+        RelatorioService relatorioService = new RelatorioService(livroRepository, usuarioRepository, emprestimoRepository);
+
         int opcao;
         do {
             System.out.println("=======MENU=======");
@@ -19,9 +34,20 @@ public class Main {
             System.out.println("0 - Sair");
             System.out.println("Escolha uma opção: ");
             opcao = scanner.nextInt();
+            scanner.nextLine();
             switch (opcao) {
                 case 1:
-                    System.out.println("Você escolheu cadastrar livro");
+                    System.out.println("Digite o título do livro:");
+                    String titulo = scanner.nextLine();
+
+                    System.out.println("Digite o autor:");
+                    String autor = scanner.nextLine();
+
+                    System.out.println("Digite o ISBN:");
+                    String isbn = scanner.nextLine();
+
+                    livroRepository.salvar(new Livro(titulo, autor, isbn));
+                    System.out.println("Livro cadastrado com sucesso!");
                     break;
                 case 2:
                     System.out.println("Você escolheu cadastrar usuário");
