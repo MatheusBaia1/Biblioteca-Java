@@ -1,5 +1,6 @@
 package com.matheus.biblioteca;
 
+import com.matheus.biblioteca.model.Emprestimo;
 import com.matheus.biblioteca.model.Livro;
 import com.matheus.biblioteca.model.Usuario;
 import com.matheus.biblioteca.repository.EmprestimoRepository;
@@ -10,6 +11,7 @@ import com.matheus.biblioteca.service.RelatorioService;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -86,18 +88,33 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.println("Livros Disponiveis:");
-                    relatorioService.listarDisponiveis().forEach(System.out::println);
+                    List<Livro> disponiveis = relatorioService.listarDisponiveis();
+                    if (disponiveis.isEmpty()) {
+                        System.out.println("Nenhum livro disponível no momento.");
+                    } else {
+                        System.out.println("Livros Disponiveis:");
+                        disponiveis.forEach(System.out::println);
+                    }
                     break;
                 case 6:
                     System.out.println("Digite seu email:");
                     String emailDigitado = scanner.nextLine();
 
-                    relatorioService.historicoDoUsuario(emailDigitado).forEach(System.out::println);
+                    List<Emprestimo> historico = relatorioService.historicoDoUsuario(emailDigitado);
+                    if (historico.isEmpty()) {
+                        System.out.println("Nenhum histórico encontrado para esse email.");
+                    } else {
+                        historico.forEach(System.out::println);
+                    }
                     break;
                 case 7:
-                    System.out.println("Emprestimos não devolvidos:");
-                    relatorioService.emprestimoNaoDevolvido().forEach(System.out::println);
+                    List<Emprestimo> naoDevolvidos = relatorioService.emprestimoNaoDevolvido();
+                    if (naoDevolvidos.isEmpty()) {
+                        System.out.println("Nenhum empréstimo ativo no momento.");
+                    } else {
+                        System.out.println("Empréstimos não devolvidos:");
+                        naoDevolvidos.forEach(System.out::println);
+                    }
                     break;
                 case 8:
                     Livro maisEmprestado = relatorioService.livroMaisEmprestado();
