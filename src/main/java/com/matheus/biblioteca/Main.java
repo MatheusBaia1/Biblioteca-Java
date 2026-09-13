@@ -75,7 +75,15 @@ public class Main {
                     }
                     break;
                 case 4:
-                    System.out.println("Devolver livro");
+                    System.out.println("Digite o ISBN do livro que deseja devolver:");
+                    String devolver = scanner.nextLine();
+
+                    try {
+                        service.devolver(devolver);
+                        System.out.println("Livro devolvido com sucesso!");
+                    } catch (RuntimeException e) {
+                        System.out.println("Erro " + e.getMessage());
+                    }
                     break;
                 case 5:
                     System.out.println("Listar livros disponiveis");
