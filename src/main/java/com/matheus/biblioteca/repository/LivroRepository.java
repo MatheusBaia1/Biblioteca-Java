@@ -18,6 +18,7 @@ public class LivroRepository {
         stmt.setString(3, livro.getIsbn());
         stmt.setBoolean(4, livro.isDisponivel());
         stmt.executeUpdate();
+        stmt.close();
         conexao.close();
     }
     public List<Livro> listarTodos() throws SQLException, IOException {
@@ -34,7 +35,7 @@ public class LivroRepository {
             livro.setDisponivel(rs.getBoolean("disponivel"));
             livros.add(livro);
         }
-
+        stmt.close();
         conexao.close();
         return livros;
     }
@@ -45,6 +46,7 @@ public class LivroRepository {
         stmt.setBoolean(1, livro.isDisponivel());
         stmt.setInt(2, livro.getId());
         stmt.executeUpdate();
+        stmt.close();
         conexao.close();
     }
     public void remover(Integer id) throws SQLException, IOException {
@@ -53,6 +55,7 @@ public class LivroRepository {
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
         stmt.executeUpdate();
+        stmt.close();
         conexao.close();
     }
 }

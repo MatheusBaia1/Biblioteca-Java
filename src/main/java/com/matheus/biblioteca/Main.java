@@ -100,7 +100,13 @@ public class Main {
                     relatorioService.emprestimoNaoDevolvido().forEach(System.out::println);
                     break;
                 case 8:
-                    System.out.println("Livro mais emprestado:" + relatorioService.livroMaisEmprestado());
+                    Livro maisEmprestado = relatorioService.livroMaisEmprestado();
+                    if (maisEmprestado != null) {
+                        System.out.println("Livro mais emprestado:");
+                        System.out.println(maisEmprestado);
+                    } else {
+                        System.out.println("Ainda não há empréstimos registrados.");
+                    }
                     break;
                 case 0:
                     System.out.println("Encerrando o sistema. Até logo!");

@@ -19,6 +19,7 @@ public class UsuarioRepository {
         stmt.setString(2, usuario.getEmail());
         stmt.executeUpdate();
         stmt.close();
+        conexao.close();
     }
     public List<Usuario> listarTodos() throws SQLException, IOException {
         Connection conexao = ConnectionFactory.getConexao();

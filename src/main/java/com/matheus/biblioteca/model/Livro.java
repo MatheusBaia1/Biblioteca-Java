@@ -21,11 +21,12 @@ public class Livro {
     }
     @Override
     public String toString() {
+        String status = disponivel ? "Disponível" : "Emprestado";
         return ("==========================" + "\n" +
-                "Livro: " + titulo + "\n" +
-                "Autor:" + autor + "\n" +
-                "isbn: " + isbn + "\n" +
-                "Status: " + disponivel + "\n" +
+                "Livro : " + titulo + "\n" +
+                "Autor :" + autor + "\n" +
+                "isbn : " + isbn + "\n" +
+                "Status : " + status + "\n" +
                 "--------------------------");
     }
     public String getTitulo() {

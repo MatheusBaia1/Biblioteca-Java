@@ -12,8 +12,8 @@ public class Usuario {
     @Override
     public String toString() {
         return "==========================" + "\n" +
-                "nome: " + nome + "\n" +
-                "email: " + email + "\n" +
+                "Nome: " + nome + "\n" +
+                "Email: " + email + "\n" +
                 "--------------------------";
     }
     public Integer getId() {

@@ -71,6 +71,7 @@ public class EmprestimoRepository {
 
             emprestimos.add(emprestimo);
         }
+        stmt.close();
         conexao.close();
         return emprestimos;
     }
@@ -79,7 +80,7 @@ public class EmprestimoRepository {
         String sql = "UPDATE emprestimos SET data_devolucao_real = ? WHERE id = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
-        if (emprestimo.getDataDevolucaoPrevista() != null) {
+        if (emprestimo.getDataDevolucaoReal() != null) {
             stmt.setDate(1, java.sql.Date.valueOf(emprestimo.getDataDevolucaoReal()));
         } else {
             stmt.setNull(1, java.sql.Types.DATE);

@@ -37,6 +37,10 @@ Main.java     → menu interativo, ponto de entrada
 
 Essa organização isola a lógica de negócio do acesso a dados — trocar a forma de persistência (por exemplo, para outro banco) exigiria mudanças apenas na camada `repository`.
 
+## Evolução do projeto
+
+O projeto começou com um Repositorio<T> genérico, guardando dados em memória (List<T>) — uma solução elegante enquanto não havia persistência real. Ao migrar para MySQL (Fase 5), ficou claro que cada entidade precisa de SQL específico (INSERT INTO livros é diferente de INSERT INTO usuarios), então o genérico foi substituído por repositórios dedicados (LivroRepository, UsuarioRepository, EmprestimoRepository), cada um implementando a mesma interface conceitual (salvar, listarTodos, remover, atualizar) com SQL real via JDBC.
+
 ## Como rodar localmente
 
 ### Pré-requisitos
