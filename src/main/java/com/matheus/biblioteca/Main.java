@@ -18,7 +18,7 @@ public class Main {
         LivroRepository livroRepository = new LivroRepository();
         UsuarioRepository usuarioRepository = new UsuarioRepository();
         EmprestimoRepository emprestimoRepository = new EmprestimoRepository(livroRepository, usuarioRepository);
-        EmprestimoService service = new EmprestimoService(livroRepository, usuarioRepository,emprestimoRepository);
+        EmprestimoService service = new EmprestimoService(livroRepository, usuarioRepository, emprestimoRepository);
         RelatorioService relatorioService = new RelatorioService(livroRepository, usuarioRepository, emprestimoRepository);
 
         int opcao;
@@ -90,7 +90,10 @@ public class Main {
                     relatorioService.listarDisponiveis().forEach(System.out::println);
                     break;
                 case 6:
-                    System.out.println("Ver histórico de um usuário");
+                    System.out.println("Digite seu email:");
+                    String emailDigitado = scanner.nextLine();
+
+                    relatorioService.historicoDoUsuario(emailDigitado).forEach(System.out::println);
                     break;
                 case 7:
                     System.out.println("Ver empréstimos não devolvidos");
